@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Calculadora Party Tibia</title>
+
+</head>
+
+<body>
+    <h2> Nível mínimo necessário para caçar com seu grupo</h2>
+    <input id="highestLevelInGroup" type="text" placeholder="Maior nível do grupo" />
+
+    <div> <input id="myLevel" type="text" placeholder="Seu nivel"/></div>
+    <button id="calcular">Calcular</button>
+    <p>Resultado:</p>
+    <div id="resultado"></div>
+
+    <script>
+
+        function calcular() {
+            var highestLevelInGroup = document.getElementById("highestLevelInGroup").value;
+            var minimalLevelToShare = Math.ceil((highestLevelInGroup / 3) * 2);
+            var myLevel = document.getElementById("myLevel").value;
+
+            var userCanShareXp = myLevel >= minimalLevelToShare;
+            var msg = '';
+
+            if(highestLevelInGroup === myLevel) {
+                msg = 'Você é o maior nível do grupo'
+            } else if(userCanShareXp) {
+                msg = 'Você pode sharear a xp';
+            } else {
+                msg = 'Você não pode sharear a xp, o nível mínimo é ' + minimalLevelToShare;
+            }
+            showMsg(msg, 'resultado');
+
+        }
+
+        function showMsg(msg, element) {
+            document.getElementById(element).innerHTML = msg;
+        }
+
+        document.getElementById('calcular').addEventListener('click', calcular)
+
+
+    </script>
+</body>
+
+</html>
